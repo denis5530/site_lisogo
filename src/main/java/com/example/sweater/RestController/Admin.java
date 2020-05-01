@@ -1,4 +1,4 @@
-package com.example.sweater.controller;
+package com.example.sweater.RestController;
 
 import com.example.sweater.Json.SliderJson;
 import com.example.sweater.domain.*;
@@ -6,21 +6,19 @@ import com.example.sweater.repos.CarouselRepo;
 import com.example.sweater.repos.HumanRepo;
 import com.example.sweater.repos.SliderRepo;
 import com.example.sweater.repos.TitleTextImgRepo;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Map;
 
-
-@Controller
-public class AdminController {
+@RestController
+public class Admin {
 
     @Autowired
     SliderRepo slider;
@@ -34,11 +32,10 @@ public class AdminController {
     @Autowired
     HumanRepo human;
 
-
     void initialization(Map<String, Object> model){
         Slider sl = new Slider("3","3","3",3);
         ArrayList<Slider> list = (ArrayList<Slider>) slider.findAll();
-                ArrayList<String> listHtml = new ArrayList<>();
+        ArrayList<String> listHtml = new ArrayList<>();
         for (int i = 0; i <list.size() ; i++) {
             SliderHtml sliderHtml = new SliderHtml();
             listHtml.add(sliderHtml.createSlide(list.get(i)));
@@ -90,32 +87,28 @@ public class AdminController {
         //System.out.println(llistTtiHtmlRight);
         model.put("blockRight",llistTtiHtmlRight);
         model.put("blockMid", llistTtiHtmlMid);
-     //   System.out.println(listCarousHtml.get(0));
+        //   System.out.println(listCarousHtml.get(0));
         model.put("human", listHumanHtml);
         model.put("listCarous",listCarousHtml);
     }
-
-
-//    @GetMapping("/admin")
-//    public String main( Map<String, Object> model) {
-//       initialization( model);
-//        return "admin";
+///
+//    @PostMapping(value = "/admin")
+//    public ResponseEntity<?> create( String client) {
+//       // System.out.println(client.text+client.text+"0");
+//        System.out.println(client);
 //
+//        return new ResponseEntity<>(HttpStatus.OK);
 //    }
 
-    @GetMapping("/admin")
-    public String main1(
-            @RequestParam(name="text",required = false, defaultValue = "0") String text, Map<String, Object>  model) {
-        initialization( model);
-        //System.out.println("!"+text);
 
-        return "admin";
+    @PostMapping( "/admin" )
+    public void someControllerMethod( @RequestParam Map<String, String> body ) {
+        System.out.println("text = "+ body.get("text"));
     }
 
-//
 //    @PostMapping("/admin")
-//    public String getGeneric( String stringToParse, Map<String, Object> model){
-////        System.out.println(stringToParse.text);
+//    public String getGeneridc(@RequestBody SliderJson stringToParse, Map<String, Object> model){
+//        System.out.println(stringToParse.text);
 //
 ////        StringReader reader = new StringReader(stringToParse);
 ////
@@ -130,23 +123,5 @@ public class AdminController {
 //        initialization( model);
 //        System.out.println(stringToParse);
 //        return "admin";
-//    }
-
-
-
-
-    @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-       // System.out.println(name);
-        return "admin";
-    }
-
-//    @PostMapping("/admin")
-//    public String editMain(@RequestParam String text, Map<String, Object> model) {
-//        System.out.println("text "+text);
-//        initialization( model);
-//        return "admin";
-//
 //    }
 }

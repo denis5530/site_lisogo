@@ -1,20 +1,18 @@
 package com.example.sweater.Json;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+@JsonAutoDetect
 public class SliderJson {
+    public String _csrf;
+    public long id;
+    public String text;
+    public int age;
 
-    private final long id;
-    private final String content;
+    public SliderJson() {
 
-    public SliderJson(long id, String content) {
-        this.id = id;
-        this.content = content;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public String getContent() {
-        return content;
-    }
 }
+

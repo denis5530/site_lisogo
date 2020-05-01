@@ -62,20 +62,43 @@
     </script>
 
     <script>
+        function f() {
+    alert("2");
+
+                 //    var myData = '_csrf=' + encodeURIComponent("${_csrf.token}") +
+              //  '&text=' + encodeURIComponent("js1");
+            $.ajax({
+                    type: 'POST',
+                    url: 'admin',
+
+                    data: {
+                        _csrf:encodeURIComponent("${_csrf.token}"),
+                        id: 3,
+                        text: 'Jeff',
+                        age: 33
+                    },
+                    success: function(result) {
+                        console.log(result);
+                    }
+            });
+
+
+        }
         function sav() {
-            alert("!");
-            var xhr = new XMLHttpRequest();
+            f();
+            <#--alert("!");-->
+            <#--var xhr = new XMLHttpRequest();-->
 
 
-            var body = '_csrf=' + encodeURIComponent("${_csrf.token}") +
-                '&text=' + encodeURIComponent("js");
+            <#--var body = '_csrf=' + encodeURIComponent("${_csrf.token}") +-->
+            <#--    '&text=' + encodeURIComponent("js");-->
 
-            xhr.open("POST", '/admin', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            <#--xhr.open("POST", '/admin', true);-->
+            <#--xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');-->
 
-            //xhr.onreadystatechange = ...;
+            <#--//xhr.onreadystatechange = ...;-->
 
-            xhr.send(body);
+            <#--xhr.send(body);-->
         }
     </script>
 
