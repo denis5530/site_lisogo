@@ -63,8 +63,8 @@
 
     <script>
         function f() {
-    alert("2");
 
+            $("#textremake").modal("hide");
                  //    var myData = '_csrf=' + encodeURIComponent("${_csrf.token}") +
               //  '&text=' + encodeURIComponent("js1");
             let l = document.getElementById("title-slider").value;
@@ -127,7 +127,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
-                <button type="button" class="btn btn-primary" onclick="sav()">Сохранить1</button>
+                <button type="button" class="btn btn-primary" onclick="sav()" data-dismiss=«modal»>Сохранить1</button>
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Редактор слайдера</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="#textremake" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

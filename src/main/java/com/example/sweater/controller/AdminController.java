@@ -107,6 +107,7 @@ public class AdminController {
     public String main1(
             @RequestParam(name="text",required = false, defaultValue = "0") String text, Map<String, Object>  model) {
         initialization( model);
+        fffds
         //System.out.println("!"+text);
 
         return "admin";
