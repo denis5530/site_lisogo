@@ -62,32 +62,20 @@
     </script>
 
     <script>
-        function saves() {
+        function sav() {
             alert("!");
-            var params = new FormData();
-            params.append("text", "JavaScript");
-            params.append("framework", "jQuery");
-            var ajax = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest();
 
-// выполнить код, когда придёт ответ с POST-запроса
-            ajax.onreadystatechange = function() {
-                if (ajax.readyState == 4) {
 
-                    if (ajax.status == 200 || ajax.status == 304) {
-                        // код при успешном запросе
-                        ajax.response; // ответ сервера
-                    } else {
-                        // код при ошибке
-                    }
+            var body = '_csrf=' + encodeURIComponent("${_csrf.token}") +
+                '&text=' + encodeURIComponent("js");
 
-                }
-            }
+            xhr.open("POST", '/admin', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-// Оправка POST-запроса
-            ajax.open('POST', '/admin');
-            ajax.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-            ajax.send(params);
+            //xhr.onreadystatechange = ...;
 
+            xhr.send(body);
         }
     </script>
 
@@ -113,7 +101,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
-                <button type="button" class="btn btn-primary" onclick="saves()">Сохранить1</button>
+                <button type="button" class="btn btn-primary" onclick="sav()">Сохранить1</button>
             </div>
         </div>
     </div>

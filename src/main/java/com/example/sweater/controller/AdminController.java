@@ -85,29 +85,39 @@ public class AdminController {
         //System.out.println(llistTtiHtmlRight);
         model.put("blockRight",llistTtiHtmlRight);
         model.put("blockMid", llistTtiHtmlMid);
-        System.out.println(listCarousHtml.get(0));
+     //   System.out.println(listCarousHtml.get(0));
         model.put("human", listHumanHtml);
         model.put("listCarous",listCarousHtml);
     }
 
 
-    @GetMapping("/admin")
-    public String main( Map<String, Object> model) {
-       initialization( model);
-        return "admin";
+//    @GetMapping("/admin")
+//    public String main( Map<String, Object> model) {
+//       initialization( model);
+//        return "admin";
+//
+//    }
 
+    @GetMapping("/admin")
+    public String main1(
+            @RequestParam(name="text",required = false, defaultValue = "0") String text, Map<String, Object>  model) {
+        initialization( model);
+        //System.out.println("!"+text);
+
+        return "admin";
     }
 
+
     @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value="text", required=false, defaultValue="World") String name, Model model) {
+    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
-        System.out.println(name);
+       // System.out.println(name);
         return "admin";
     }
 
     @PostMapping("/admin")
     public String editMain(@RequestParam String text, Map<String, Object> model) {
-        System.out.println("1111 "+text);
+        System.out.println("text "+text);
         initialization( model);
         return "admin";
 
