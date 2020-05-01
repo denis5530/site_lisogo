@@ -103,7 +103,7 @@ public class Admin {
 
     @PostMapping( "/admin" )
     public void someControllerMethod( @RequestParam Map<String, String> body ) {
-        System.out.println("text = "+ body.get("text"));
+        System.out.println("text = "+ body.get("title"));
     }
 
 //    @PostMapping("/admin")

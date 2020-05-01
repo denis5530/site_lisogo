@@ -67,12 +67,15 @@
 
                  //    var myData = '_csrf=' + encodeURIComponent("${_csrf.token}") +
               //  '&text=' + encodeURIComponent("js1");
+            let l = document.getElementById("title-slider").value;
+
             $.ajax({
                     type: 'POST',
                     url: 'admin',
 
                     data: {
                         _csrf:encodeURIComponent("${_csrf.token}"),
+                        title:l,
                         id: 3,
                         text: 'Jeff',
                         age: 33
@@ -118,7 +121,7 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <input type="input" placeholder="Введите заголовок..."><br>
+                    <input id="title-slider" type="input" placeholder="Введите заголовок..."><br>
                     <textarea cols="60" rows="10" placeholder="Введите текст..."></textarea>
                 </div>
             </div>
